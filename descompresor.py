@@ -1,13 +1,17 @@
 """
-Decodificación (descompresión) de archivos .huff.
+Decodificación (descompresión) de archivos .huff, en dos versiones:
 
-Versión con diccionario inverso: se lee el flujo bit a bit acumulando un
-código; en cuanto el código acumulado existe en el diccionario inverso
-{código: carácter} se emite el carácter y se reinicia la acumulación.
-Funciona porque los códigos de Huffman son libres de prefijo.
+1. Diccionario inverso: se lee el flujo bit a bit acumulando un código;
+   en cuanto el código acumulado existe en el diccionario inverso
+   {código: carácter} se emite el carácter y se reinicia la acumulación.
+   Funciona porque los códigos de Huffman son libres de prefijo.
+
+2. Árbol de Huffman: se parte de la raíz y cada bit indica a qué hijo
+   bajar (0 izquierda, 1 derecha). Al llegar a una hoja se emite su
+   carácter y se regresa a la raíz.
 
 Uso:
-    python descompresor.py comprimidos/algoritmo.huff
+    python descompresor.py comprimidos/algoritmo.huff [diccionario|arbol]
 """
 
 import pickle
@@ -54,16 +58,47 @@ def decodificar_con_diccionario(bits, codes_dic):
     return "".join(caracteres)
 
 
-def descomprimir(ruta_huff, ruta_salida=None):
+def es_hoja(nodo):
+    return nodo.left is None and nodo.right is None
+
+
+def decodificar_con_arbol(bits, root):
+    """Reconstruye el texto recorriendo el árbol de Huffman bit a bit."""
+    if es_hoja(root):
+        return root.char * len(bits)
+
+    caracteres = []
+    nodo = root
+    for bit in bits:
+        nodo = nodo.right if bit else nodo.left
+        if es_hoja(nodo):
+            caracteres.append(nodo.char)
+            nodo = root
+
+    return "".join(caracteres)
+
+
+def decodificar(encabezado, bits, metodo="arbol"):
+    """Decodifica los bits con el método indicado: 'diccionario' o 'arbol'."""
+    if metodo == "diccionario":
+        return decodificar_con_diccionario(bits, encabezado["codes_dic"])
+    if metodo == "arbol":
+        return decodificar_con_arbol(bits, encabezado["arbol"])
+    raise ValueError(f"Método desconocido: {metodo}")
+
+
+def descomprimir(ruta_huff, metodo="arbol", ruta_salida=None):
     """
     Descomprime un archivo .huff y guarda el texto reconstruido.
+
+    metodo: 'diccionario' (diccionario inverso) o 'arbol' (árbol de Huffman).
 
     Por defecto el resultado se guarda junto al .huff como <nombre>.dec.txt.
     Retorna la ruta del archivo de texto generado.
     """
     ruta_huff = Path(ruta_huff)
     encabezado, bits = leer_huff(ruta_huff)
-    texto = decodificar_con_diccionario(bits, encabezado["codes_dic"])
+    texto = decodificar(encabezado, bits, metodo)
 
     ruta_salida = Path(ruta_salida) if ruta_salida else ruta_huff.with_suffix(".dec.txt")
     with open(ruta_salida, "w", encoding="utf-8", newline="") as archivo:
@@ -73,7 +108,8 @@ def descomprimir(ruta_huff, ruta_salida=None):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("Uso: python descompresor.py <archivo.huff>")
+    if len(sys.argv) not in (2, 3):
+        sys.exit("Uso: python descompresor.py <archivo.huff> [diccionario|arbol]")
 
-    print("Texto reconstruido en:", descomprimir(sys.argv[1]))
+    metodo_elegido = sys.argv[2] if len(sys.argv) == 3 else "arbol"
+    print("Texto reconstruido en:", descomprimir(sys.argv[1], metodo_elegido))
