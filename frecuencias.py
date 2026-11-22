@@ -16,8 +16,13 @@ from huffman import huffmanCodes, print_huffman_solution
 
 
 def leer_texto(ruta):
-    """Lee un archivo de texto en UTF-8 y lo devuelve como string."""
-    with open(ruta, encoding="utf-8") as archivo:
+    """
+    Lee un archivo de texto en UTF-8 y lo devuelve como string.
+
+    newline="" conserva los saltos de línea tal cual (\\r\\n incluido);
+    si Python los convirtiera, el archivo descomprimido no sería idéntico.
+    """
+    with open(ruta, encoding="utf-8", newline="") as archivo:
         return archivo.read()
 
 
