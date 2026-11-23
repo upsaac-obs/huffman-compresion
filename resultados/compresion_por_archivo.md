@@ -1,0 +1,32 @@
+| Archivo | Idioma | Tamaño original (bytes) | Tamaño comprimido (bytes) | Compression factor | Bits promedio por símbolo |
+|---|---|---|---|---|---|
+| algoritmo.txt | Español | 31052 | 25599 | 0.8244 | 4.8796 |
+| futbol.txt | Español | 73630 | 47081 | 0.6394 | 4.5486 |
+| literatura.txt | Español | 37339 | 26318 | 0.7048 | 4.4585 |
+| mexico.txt | Español | 273457 | 159443 | 0.5831 | 4.5677 |
+| miguel_de_cervantes.txt | Español | 59269 | 38858 | 0.6556 | 4.5481 |
+| musica.txt | Español | 48978 | 33857 | 0.6913 | 4.4329 |
+| paris.txt | Español | 67797 | 45623 | 0.6729 | 4.5951 |
+| quimica.txt | Español | 40707 | 30789 | 0.7564 | 4.5364 |
+| revolucion_francesa.txt | Español | 106543 | 64856 | 0.6087 | 4.5145 |
+| sistema_solar.txt | Español | 31848 | 23269 | 0.7306 | 4.4836 |
+| algorithme.txt | Francés | 20749 | 17971 | 0.8661 | 4.5126 |
+| chimie.txt | Francés | 80187 | 59044 | 0.7363 | 4.7736 |
+| football.txt | Francés | 138332 | 88488 | 0.6397 | 4.6732 |
+| litterature.txt | Francés | 28610 | 22106 | 0.7727 | 4.5855 |
+| mexique.txt | Francés | 114804 | 73550 | 0.6407 | 4.7144 |
+| musique.txt | Francés | 59892 | 39545 | 0.6603 | 4.5101 |
+| paris.txt | Francés | 236779 | 141949 | 0.5995 | 4.6431 |
+| revolution_francaise.txt | Francés | 122729 | 75627 | 0.6162 | 4.6677 |
+| systeme_solaire.txt | Francés | 109355 | 69273 | 0.6335 | 4.5961 |
+| victor_hugo.txt | Francés | 121305 | 76144 | 0.6277 | 4.7155 |
+| algorithm.txt | Inglés | 27067 | 21675 | 0.8008 | 4.5984 |
+| association_football.txt | Inglés | 48185 | 33351 | 0.6921 | 4.5712 |
+| chemistry.txt | Inglés | 44433 | 31737 | 0.7143 | 4.5151 |
+| french_revolution.txt | Inglés | 85224 | 54316 | 0.6373 | 4.5597 |
+| literature.txt | Inglés | 32701 | 24023 | 0.7346 | 4.5783 |
+| mexico.txt | Inglés | 93716 | 60563 | 0.6462 | 4.672 |
+| music.txt | Inglés | 79718 | 51834 | 0.6502 | 4.4878 |
+| paris.txt | Inglés | 89079 | 59385 | 0.6667 | 4.713 |
+| solar_system.txt | Inglés | 61762 | 40807 | 0.6607 | 4.562 |
+| william_shakespeare.txt | Inglés | 46149 | 31388 | 0.6801 | 4.5948 |
