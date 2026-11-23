@@ -1,0 +1,7 @@
+Idioma,Archivo,Método,Repeticiones,Promedio (ms),Desv. estándar (ms)
+Español,literatura.txt,diccionario,300,19.107981423337606,3.252265347365925
+Español,literatura.txt,arbol,300,23.595148029996835,4.560413089783294
+Francés,litterature.txt,diccionario,300,15.377597630000915,3.542475057913966
+Francés,litterature.txt,arbol,300,17.51013748334117,2.047585586855297
+Inglés,literature.txt,diccionario,300,20.997024473336598,5.472997544100889
+Inglés,literature.txt,arbol,300,24.18825030333134,3.145895843401601
